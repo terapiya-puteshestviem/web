@@ -1195,6 +1195,11 @@
         .faq[open]>summary::after {
             transform: rotateX(180deg);
         }
+
+        .link-button:hover {
+            outline: 2px solid black;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -1900,7 +1905,11 @@
                     <button class="cta" type="submit">Отправить</button>
                     <div><span class="muted small">*Поля, обязательные для заполнения</span><br>
                         <span class="muted small">Вы также можете написать нам:
-                            <strong>@terapiyaputeshestviem</strong></span>
+                            <div class="link-button" onclick="location.href='https://t.me/terapiyaputeshestviem/'"
+                                style="display:inline-block;">
+                                <strong>@terapiyaputeshestviem</strong>
+                            </div>
+                        </span>
                     </div>
                 </div>
                 <div id="apply-status" class="muted small" style="margin-top:10px;"></div>
@@ -1911,7 +1920,8 @@
     <footer>
         <div class="container row">
             <div class="pwhite">© 2025 Терапия путешествием · Все права защищены</div>
-            <div class="pwhite">Связаться с нами: @terapiyaputeshestviem</div>
+            <div class="pwhite link-button" onclick="location.href='https://t.me/terapiyaputeshestviem/'">Связаться с
+                нами: @terapiyaputeshestviem</div>
         </div>
     </footer>
 
