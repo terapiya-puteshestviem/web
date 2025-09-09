@@ -1,0 +1,2230 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Терапия путешествием — психологический тур в Армении</title>
+    <meta name="description"
+        content="Восьмидневный тур в Армении: психологические и телесные практики, медитации, хайкинг, баня, творчество." />
+    <style>
+        main section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        main section.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        :root {
+            --bg: #f5f2ed;
+            /* тёплый бежевый */
+            --ink: #3a2d26;
+            /* тёмно-коричневый для заголовков */
+            --text: #544b46;
+            /* основной текст */
+            --muted: #7b6f67;
+            /* вторичный текст */
+            --sand: #d9c8b6;
+            /* линии/карточки */
+            --accent: #746b5f;
+            /* кнопки */
+            --accent-ink: #fff;
+            --sky: #a9c0d6;
+            /* вариант фона как небо */
+            --nav-h: 64px;
+            /* переменная высоты шапки (JS выставит точное значение) */
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+            line-height: 1.6;
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        a {
+            color: inherit
+        }
+
+        /* Шапка */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            -webkit-backdrop-filter: saturate(1.2) blur(8px);
+            /*crossbrauser for safari*/
+            backdrop-filter: saturate(1.2) blur(8px);
+            background: color-mix(in srgb, var(--bg) 5%, #EBDECF 95%);
+            border-bottom: 1px solid color-mix(in srgb, var(--sand) 60%, #0000 40%);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0
+        }
+
+        .brand__logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background-color: #EBDECF;
+        }
+
+        .brand__name {
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--ink)
+        }
+
+        .nav__links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav__links a {
+            padding: 10px 6px;
+            text-decoration: none;
+            color: var(--text)
+        }
+
+        .nav__links a.nav__cta,
+        .nav__links a.nav__cta:visited {
+            color: #EBDECF;
+            /* белый текст */
+        }
+
+        .nav__cta {
+            padding: 10px 16px;
+            background: var(--accent);
+            color: var(--accent-ink);
+            border-radius: 12px;
+            text-decoration: none;
+        }
+
+        .hero .cta {
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Герой */
+        .hero {
+            position: relative;
+            isolation: isolate;
+            z-index: 10;
+            color: #EBDECF;
+            min-height: 68vh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin: 0 0 10px;
+            font-size: clamp(32px, 6vw, 56px);
+            letter-spacing: 0.02em
+        }
+
+        .hero p {
+            margin: 0 0 22px;
+            font-size: clamp(16px, 2.2vw, 20px)
+        }
+
+        .h2white {
+            color: #EBDECF;
+        }
+
+        .cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 14px;
+            background: var(--accent);
+            color: #EBDECF;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.5em;
+            z-index: 100;
+        }
+
+        .bgmountain {
+            background-image: linear-gradient(to top, rgba(0, 0, 0, .45), rgba(0, 0, 0, .15)), url('backgrounds/bg3.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
+        }
+
+        .cta svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Секции */
+        section {
+            padding: 60px 0;
+            scroll-margin-top: var(--nav-h, 80px);
+                /*while scrolling the header does not cover the section title*/
+        }
+
+        h2 {
+            color: var(--ink);
+            font-size: clamp(24px, 4vw, 36px);
+            margin: 0 0 16px
+        }
+
+        .lead {
+            color: var(--muted);
+            margin-bottom: 28px
+        }
+
+        /* Грид карточек */
+        .grid {
+            display: grid;
+            gap: 20px
+        }
+
+        @media (min-width:768px) {
+            .grid.cols-3 {
+                grid-template-columns: repeat(3, 1fr)
+            }
+        }
+
+        @media (min-width:768px) {
+            .grid.cols-2 {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        .card {
+            background: #EBDECF;
+            border: 1px solid color-mix(in srgb, #b88b77 80%, #0000 20%);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .04);
+        }
+
+        .icon {
+            width: 28px;
+            height: 28px;
+            display: inline-grid;
+            place-items: center;
+            border-radius: 10px;
+            background: color-mix(in srgb, var(--accent) 20%, #fff 80%);
+            margin-bottom: 8px
+        }
+
+        .muted {
+            color: var(--muted)
+        }
+
+        .pwhite {
+            color: #EBDECF;
+        }
+
+        /* ========== Полная программа (аккордеоны) ========== */
+        .program .lead {
+            margin-bottom: 24px;
+        }
+
+        .day {
+            border: 1px solid color-mix(in srgb, var(--sand) 60%, #0000 40%);
+            border-radius: 16px;
+            background: #fff;
+            margin: 14px 0;
+            overflow: clip;
+        }
+
+        /* Заголовок дня */
+        .day>summary {
+            list-style: none;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .day>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Индикатор раскрытия */
+        .day>summary::after {
+            content: "⌄";
+            font-size: 18px;
+            line-height: 1;
+            transform: rotate(0deg);
+            transition: transform .2s ease;
+        }
+
+        .day[open]>summary::after {
+            transform: rotate(180deg);
+        }
+
+        /* Бейдж «День N» */
+        .day__badge {
+            background: color-mix(in srgb, var(--accent) 18%, #fff 82%);
+            color: var(--ink);
+            border: 1px solid color-mix(in srgb, var(--sand) 70%, #0000 30%);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        /* Заголовок справа от бейджа */
+        .day__title {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        /* Тело аккордеона */
+        .day__body {
+            display: grid;
+            gap: 16px;
+            padding: 0 18px 18px 18px;
+        }
+
+        @media (min-width: 900px) {
+            .day__body {
+                grid-template-columns: 1.2fr 1fr;
+                /* текст + галерея */
+                gap: 22px;
+            }
+        }
+
+        .day__text p {
+            margin: 0 0 10px;
+        }
+
+        .day__text ul {
+            margin: 0;
+            padding-left: 18px;
+        }
+
+        /* Галерея */
+        .gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .gallery figure {
+            margin: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid color-mix(in srgb, var(--sand) 60%, #0000 40%);
+            background: #fff;
+        }
+
+        .gallery img {
+            display: block;
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .gallery figcaption {
+            font-size: 12px;
+            color: var(--muted);
+            padding: 8px 10px;
+        }
+
+        /* Мобильные улучшения */
+        @media (max-width: 520px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                /* по одному в ряд */
+            }
+
+            .gallery img {
+                height: 180px;
+            }
+        }
+
+        /* Стоимость */
+        .price {
+            font-size: clamp(26px, 4vw, 34px);
+            color: var(--ink);
+            font-weight: 700
+        }
+
+        .pill {
+            display: inline-block;
+            border-radius: 999px;
+            padding: 6px 12px;
+            /*background: color-mix(in srgb, var(--accent) 12%, #fff 88%);*/
+        }
+
+        /* Футер */
+        footer {
+            padding: 40px 0 60px;
+            background: #362c1f;
+            color: var(--muted)
+        }
+
+        .small {
+            font-size: 14px
+        }
+
+        #apply {
+            background-image: linear-gradient(to top, rgba(0, 0, 0, .4), rgba(0, 0, 0, .2)), url('backgrounds/bg1.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /*styles for errors*/
+        .field {
+            display: block;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid var(--sand);
+            outline: none;
+        }
+
+        .field.invalid input,
+        .field.invalid select,
+        .field.invalid textarea {
+            border-color: #e24646;
+            box-shadow: 0 0 0 2px rgba(226, 70, 70, .08);
+        }
+
+        /* 1) Точный селектор для заголовка поля */
+        .field>span:first-child {
+            display: block;
+            margin-bottom: 8px;
+            /* отступ между “Телефон *” и вводом */
+        }
+
+        /* 2) Гарантируем отступ для любых контролов сразу под заголовком */
+        .field> :is(input, select, textarea, .phone-row) {
+            /* если нужно, можно использовать только это правило и не трогать span */
+            margin-top: 8px;
+        }
+
+        .error-text {
+            display: block;
+            color: #e24646;
+            font-size: 13px;
+            margin-top: 6px;
+            min-height: 1em;
+        }
+
+        /* телефон: код страны + локальный номер */
+        .phone-row {
+            display: grid;
+            gap: 10px;
+            grid-template-columns: 140px 1fr;
+        }
+
+        @media (max-width: 520px) {
+            .phone-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* кнопка гамбургера */
+        .nav__toggle {
+            display: none;
+            width: 40px;
+            height: 40px;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            border-radius: 8px;
+            touch-action: manipulation;
+            /* быстрее тап без delay */
+        }
+
+        .nav__toggle:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .nav__toggle span {
+            display: block;
+            height: 2px;
+            margin: 6px 0;
+            background: var(--ink);
+            transition: transform .25s ease, opacity .2s ease;
+        }
+
+        /* Делаем фон и hero отдельными GPU-слоями, чтобы не дёргались при оверлее меню */
+        .bgmountain,
+        .hero {
+            transform: translateZ(0);
+            /* запускаем композитинг */
+            -webkit-transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
+            contain: paint;
+            /* отсекаем лишние перерисовки */
+            background-attachment: scroll;
+            /* на всякий — вдруг кто-то поставил fixed */
+        }
+
+        /* Само меню тоже на своём слое */
+        .nav__links {
+            will-change: auto;
+            backface-visibility: hidden;
+        }
+
+        /* мобильное меню (скрыто по умолчанию) */
+        /* ===== Мобильное меню: быстрое и плавное ===== */
+        @media (max-width:1100px) {
+            .nav .row {
+                gap: 8px;
+            }
+
+            .nav__toggle {
+                display: block;
+            }
+
+            /* Шапка без блюра во время открытого меню (ускоряет отрисовку) */
+            .nav.nav--open {
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+                background: #fff !important;
+                /* сплошной фон вместо полупрозрачных миксов */
+                box-shadow: none;
+                /* тени иногда триггерят дорогие компоновки */
+            }
+
+            /* Панель меню как отдельный композитный слой */
+            .nav__links {
+                position: fixed;
+                top: var(--nav-h, 64px);
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 0;
+
+                background: #fff;
+                /* сплошной фон — видно всегда */
+                -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+
+                /* Анимируем ТОЛЬКО transform/opacity (дёшево) */
+                transform: translate3d(0, -100%, 0);
+                opacity: 0;
+
+                /* ВАЖНО: чтобы невидимая панель не блокировала клики */
+                pointer-events: none;
+                visibility: hidden;
+
+                will-change: transform, opacity;
+                backface-visibility: hidden;
+                contain: paint;
+
+                transition: transform .2s ease-out, opacity .2s ease-out;
+            }
+
+            .photo-marquee::before,
+            .photo-marquee::after {
+                pointer-events: none;
+            }
+
+            .nav--open .nav__links {
+                transform: translate3d(0, 0, 0);
+                opacity: 1;
+                pointer-events: auto;
+                z-index: 0;
+                visibility: visible;
+            }
+
+            /* Пункты меню: ровные интервалы без gap (совместимо со старыми Safari) */
+            .nav__links a {
+                display: block;
+                width: 100%;
+                max-width: 440px;
+                text-align: center;
+                font-size: 18px;
+                padding: 10px 0;
+                margin: 6px 0;
+                border-bottom: 1px solid rgba(0, 0, 0, .06);
+            }
+
+            .nav__links a:last-child {
+                border-bottom: none;
+            }
+
+            /* Иконка-гамбургер → крестик */
+            .nav--open .nav__toggle span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .nav--open .nav__toggle span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav--open .nav__toggle span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            /* Блокируем прокрутку страницы при открытом меню */
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+
+        /* Если пользователь просит меньше анимаций — уважим */
+        @media (prefers-reduced-motion: reduce) {
+            .nav__links {
+                transition: none !important;
+            }
+        }
+
+        /* На случай отсутствия поддержки backdrop-filter сразу задаём фон шапке */
+        @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+            .nav {
+                background: rgba(245, 242, 237, .98);
+            }
+        }
+
+        /* Явный z-index шапки, но ниже панели меню */
+        .nav {
+            z-index: 100;
+        }
+
+        /* Контейнер дорожки */
+        .photo-marquee {
+            --gap: 16px;
+            --speed: 40s;
+            /* скорость цикла: больше = медленнее */
+            position: relative;
+            overflow: hidden;
+            padding: 8px 0;
+        }
+
+        /* Маска по краям (необязательно, но красиво) */
+        .photo-marquee::before,
+        .photo-marquee::after {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            bottom: 0;
+            width: 60px;
+            pointer-events: none;
+            background: linear-gradient(to right, var(--bg, #fff), transparent);
+        }
+
+        .photo-marquee::after {
+            right: 0;
+            transform: scaleX(-1);
+        }
+
+        .photo-marquee::before {
+            left: 0;
+        }
+
+        /* Лента (две копии подряд для бесшовности) */
+        .marquee-track {
+            display: flex;
+            gap: var(--gap);
+            width: max-content;
+            /* ширина по содержимому */
+            animation: scroll-x var(--speed) linear infinite;
+        }
+
+        /* пауза при hover/фокусе где угодно внутри */
+        .photo-marquee:is(:hover, :focus-within) .marquee-track {
+            animation-play-state: paused;
+
+
+        }
+
+        /* Элемент изображения */
+        .marquee-item {
+            flex: 0 0 auto;
+            width: clamp(180px, 24vw, 320px);
+            /* адаптивная ширина карточки */
+            aspect-ratio: 2/3;
+            /* единый формат */
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .06);
+            cursor: zoom-in;
+            position: relative;
+        }
+
+        .marquee-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform .4s ease;
+            /* плавный зум */
+        }
+
+        .marquee-item:hover img {
+            transform: scale(1.3);
+            /* увеличение при наведении */
+        }
+
+        @keyframes scroll-x {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+
+            /* прокручиваем ровно половину (т.к. контент продублирован) */
+        }
+
+        /* Уважение prefers-reduced-motion */
+        @media (prefers-reduced-motion: reduce) {
+            .marquee-track {
+                animation: none;
+            }
+        }
+
+        /* Лайтбокс на <dialog> */
+        dialog.lightbox {
+            border: 0;
+            padding: 0;
+            margin: 0;
+
+            background: transparent;
+            display: none;
+        }
+
+        dialog.lightbox[open] {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            /* делаем flex-контейнер */
+            align-items: center;
+            /* центр по вертикали */
+            justify-content: center;
+            /* центр по горизонтали */
+        }
+
+        dialog.lightbox:not([open]) {
+            pointer-events: none;
+            opacity: 0;}
+
+        dialog.lightbox::backdrop {
+            background: rgba(0, 0, 0, .6);
+            backdrop-filter: blur(2px);
+        }
+
+        .lightbox__wrap {
+            position: relative;
+            display: grid;
+            /* центрируем содержимое */
+            place-items: center;
+            /* по горизонтали и вертикали */
+            width: 100%;
+            /* растягиваем wrap на весь экран */
+            height: 100%;
+        }
+
+        .lightbox__img {
+            display: block;
+            max-width: 96vw;
+            max-height: 86vh;
+            border-radius: 12px;
+        }
+
+        .lightbox__close {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            border: 0;
+            border-radius: 999px;
+            width: 40px;
+            height: 40px;
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            background: rgba(255, 255, 255, .9);
+        }
+
+        /*инфорграфика 5 шагов-->*/
+
+        .infographic-5 {
+            --radius: clamp(190px, 26vw, 240px);
+            /* радиус размещения карточек */
+            position: relative;
+            /*padding: 60px 0;*/
+            padding: 60px 0 40px;
+            /* всегда квадрат */
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .infographic-5 .step, .infographic-5 .center {
+            pointer-events: auto;
+        }
+
+        .infographic-5 .container {
+            display: grid;
+            justify-items: start;
+            /* ← было place-items:center */
+            align-items: start;
+        }
+
+        /* обёртка круга */
+        /* основное ограничение ширины переносим на ring-wrap */
+        .ring-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 820px;
+            /* прежнее ограничение */
+            margin: 0 auto;
+            /* держим высоту на десктопе */
+            aspect-ratio: 1 / 1;
+            min-height: 420px;
+            overflow: hidden;
+        }
+
+        /* пунктирный след (SVG) */
+        .circle-path {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-18deg);
+            /* лёгкий поворот для красоты */
+            pointer-events: none;
+        }
+
+        /* центр (логотип) */
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+
+        .center img {
+            width: clamp(96px, 16vw, 140px);
+            border-radius: 50%;
+        }
+
+
+        .steps {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .step {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform:
+                translate(-50%, -50%) rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle)));
+            transform-origin: center;
+
+            width: clamp(250px, 12vw, 400px);
+            text-align: center;
+            background: #EBDECF;
+            border-radius: 12px;
+            padding: 18px 12px 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+            opacity: 0;
+            translate: 0 8px;
+            transition: box-shadow .25s ease, transform .6s ease, opacity .6s ease, translate .6s ease;
+            pointer-events: none;
+        }
+
+        .step:hover {
+            box-shadow: 0 10px 26px rgba(0, 0, 0, .12);
+            translate: 0 -2px;
+            transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle))) scale(1.2);
+        }
+
+        .step:hover::after {
+            background: linear-gradient(to bottom, rgba(116, 107, 95, .45), transparent 70%);
+        }
+
+        .step:focus-within {
+            box-shadow: 0 0 0 3px rgba(116, 107, 95, .2);
+        }
+
+        /* номер шага как отдельный бейдж */
+        .step-number {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent, #746b5f);
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, .15);
+        }
+
+        .step:focus-within .step-number {
+            outline: 3px solid color-mix(in srgb, var(--accent) 30%, #fff);
+        }
+
+        .step-content h3 {
+            margin: 0 0 6px;
+            font-size: 16px;
+            color: #3a2d26;
+        }
+
+        .step-content p {
+            max-width: 22ch;
+            margin: 0 auto;
+            font-size: 14px;
+            color: #7b6f67;
+            line-height: 1.5;
+        }
+
+        .steps-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 740px;
+            aspect-ratio: 1 / 1;
+            /* квадрат — высота = ширине */
+            margin: 20px auto;
+            /* зазор сверху/снизу, чтобы ничего не липло */
+            isolation: isolate;
+        }
+
+        /* палитра номеров*/
+        :root {
+            --radius: 240px;
+            --accent: #746b5f;
+            --step1: #746b5f;
+            --step2: #8a7c6f;
+            --step3: #a78f79;
+            --step4: #c09f84;
+            --step5: #d6b18f;
+        }
+
+        .steps-wrap.ready .step {
+            opacity: 1;
+            translate: 0 0;
+            transition: transform .6s ease, opacity .6s ease, translate .6s ease;
+            pointer-events: auto;
+        }
+
+        .step:nth-child(1) .step-number {
+            background: var(--step1);
+            transition-delay: .05s;
+        }
+
+        .step:nth-child(2) .step-number {
+            background: var(--step2);
+            transition-delay: .12s;
+        }
+
+        .step:nth-child(3) .step-number {
+            background: var(--step3);
+            transition-delay: .19s;
+        }
+
+        .step:nth-child(4) .step-number {
+            background: var(--step4);
+            transition-delay: .26s;
+        }
+
+        .step:nth-child(5) .step-number {
+            background: var(--step5);
+            transition-delay: .33s;
+        }
+
+        /* Мобильный режим: превращаемся в вертикальный список */
+        @media (max-width: 720px) {
+
+            /* небольшой отступ секции, чтобы точно не налезало */
+            .infographic-5 {
+                position: relative;
+                padding: 60px 0 40px;
+            }
+
+            .steps-wrap {
+                aspect-ratio: auto;
+                /* было 1/1 — из-за этого секция не увеличивалась по высоте */
+                height: auto;
+                margin: 20px auto;
+                /* можно оставить как есть, просто даём нормальный отступ */
+            }
+
+            .ring-wrap {
+                position: relative;
+                max-width: 560px;
+                width: 100%;
+                aspect-ratio: auto;
+                min-height: 0;
+            }
+
+            .circle-path,
+            .ring-outline,
+            .step::after {
+                display: none;
+            }
+
+            .center {
+                position: static;
+                transform: none;
+                margin: 0 0 12px;
+                z-index: auto;
+            }
+
+            .step {
+                position: static;
+                transform: none !important;
+                translate: 0 !important;
+                width: 100%;
+                pointer-events: none;
+            }
+
+            .steps-wrap.ready .step {
+                pointer-events: auto;
+            }
+
+            .steps {
+                
+                display: grid;
+                gap: 12px;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            /* лучи/соединители убираем */
+
+            .step-number {
+                position: relative;
+                top: 0;
+                left: 0;
+                transform: none;
+                margin: 0 auto 8px;
+            }
+
+            /* чуть ближе к центру на узких экранах */
+            :root {
+                --radius: calc(min(92vw, 560px)/2.6);
+            }
+        }
+
+        /* Организаторы */
+        .team-grid {
+            align-items: stretch;
+        }
+
+        .team-card {
+            display: grid;
+            grid-template-rows: auto auto auto 1fr auto;
+            gap: 10px;
+            text-align: center;
+            background: #EBDECF;
+            /* как и другие card */
+        }
+
+        .team-card .bio {
+            margin: 0;
+        }
+
+        .avatar {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto 6px;
+            border-radius: 10%;
+            overflow: hidden;
+            border: 2px solid color-mix(in srgb, var(--sand) 70%, #0000 30%);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            margin: 6px 0 0;
+            font-size: 18px;
+            color: var(--ink);
+        }
+
+        .role {
+            margin-bottom: 4px;
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 8px;
+        }
+
+        .socials a {
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid color-mix(in srgb, var(--sand) 70%, #0000 30%);
+            background: color-mix(in srgb, #fff 80%, var(--bg) 20%);
+        }
+
+        /* Hover-эффект в стиле карточек */
+        .team-card:hover {
+            box-shadow: 0 10px 26px rgba(0, 0, 0, .12);
+            transform: translateY(-2px);
+            transition: box-shadow .25s ease, transform .25s ease;
+        }
+
+        /* адаптация сетки под мобильные/планшеты */
+        @media (max-width: 900px) {
+            .grid.cols-3.team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .grid.cols-3.team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pic-faq {
+            border-radius: 5%;
+            transform: scale(0.8);
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
+
+        .faq {
+            border: 1px solid color-mix(in srgb, var(--sand) 60%, #0000 40%);
+            border-radius: 16px;
+            background: #fff;
+            margin: 14px 0;
+            overflow: clip;
+        }
+
+        /* Заголовок дня */
+        .faq>summary {
+            list-style: none;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 18px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .faq>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        /* Индикатор раскрытия */
+        .faq>summary::after {
+            content: "⌄";
+            text-align: right;
+            font-size: 18px;
+            line-height: 1;
+            transform: rotate(0deg);
+            transition: transform .2s ease;
+        }
+
+        .faq[open]>summary::after {
+            transform: rotateX(180deg);
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Навигация -->
+    <nav class="nav">
+        <div class="container row">
+            <a href="#top" class="brand" aria-label="На главную">
+                <span class="brand__logo" aria-hidden="true"><img src="icons/symbol.png" alt=""></span>
+                <span class="brand__name">Терапия путешествием</span>
+            </a>
+
+            <!-- кнопка-гамбургер -->
+            <button class="nav__toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-links">
+                <span></span><span></span><span></span>
+            </button>
+
+            <!-- меню -->
+            <div id="nav-links" class="nav__links small" role="menu">
+                <a href="#about" role="menuitem">О путешествии</a>
+                <a href="#who" role="menuitem">Кому подойдёт</a>
+                <a href="#program" role="menuitem">Программа</a>
+                <a href="#price" class="pill" role="menuitem">Стоимость</a>
+                <a href="#team" role="menuitem">Команда тура</a>
+                <a href="#apply" class="nav__cta" role="menuitem">Хочу в тур</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="bgmountain">
+        <!-- Герой -->
+        <header id="top" class="hero">
+            <div class="container">
+                <h1>«Терапия путешествием»</h1>
+                <h2 class="h2white" style="font-weight: 400;">превращаем тур из бега по достопримечательностям в глубокое путешествие к себе</h2>
+                <a href="#apply" class="cta" aria-label="Перейти к анкете">
+                    <!-- иконка-стрелка -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                    Хочу в тур
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <!-- О ретрите -->
+            <section id="about">
+                <div class="container">
+                    <h2 class="h2white" style="text-align:center">О туре</h2>
+                    <p class="pwhite" style="font-size: 1.8em; text-align:center"> Психологический тур для тех, кто хочет
+                        замедлиться, «переварить»
+                        впечатления и вернуться домой не просто с
+                        фотографиями, а с настоящим чувством обновления и ясности</p>
+                </div>
+            </section>
+
+
+            <section class="infographic-5">
+                <div class="container"> <!-- контейнер для центрирования -->
+                    <div class="ring-wrap">
+                        <svg class="circle-path" viewBox="0 0 400 400" aria-hidden="true">
+                            <circle cx="200" cy="200" r="180" fill="none" stroke="#ffe8cc" stroke-dasharray="6 10"
+                                stroke-width="2" />
+                        </svg>
+
+                        <div class="center">
+                            <img src="icons/ris.png" alt="Человек с рюкзаком">
+                        </div>
+                        <div class="steps-wrap">
+                            <ul class="steps">
+                                <li class="step step1" style="--angle:-90deg">
+                                    <div class="step-number">01</div>
+                                    <div class="step-content">
+                                        <h3 style="font-size: 24px;">ПРИСЛУШАТЬСЯ<br>к себе <br>до поездки</h3>
+                                    </div>
+                                </li>
+                                <li class="step step2" style="--angle:-18deg">
+                                    <div class="step-number">02</div>
+                                    <div class="step-content">
+                                        <h3 style="font-size: 24px;">ПОГРУЗИТЬСЯ<br>в ритм <br>Армении</h3>
+                                    </div>
+                                </li>
+                                <li class="step step3" style="--angle:54deg">
+                                    <div class="step-number">03</div>
+                                    <div class="step-content">
+                                        <h3 style="font-size: 24px;">ПРОЖИТЬ<br>эмоции <br>безопасно</h3>
+                                    </div>
+                                </li>
+                                <li class="step step4" style="--angle:126deg">
+                                    <div class="step-number">04</div>
+                                    <div class="step-content">
+                                        <h3 style="font-size: 24px;">СОЗДАТЬ<br>свой личный <br>артефакт</h3>
+                                        
+                                    </div>
+                                </li>
+                                <li class="step step5" style="--angle:198deg">
+                                    <div class="step-number">05</div>
+                                    <div class="step-content">
+                                        <h3 style="font-size: 24px;">ЗАБРАТЬ<br>этот опыт <br>с собой</h3>
+                                       
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Почему с нами иначе? -->
+            <section id="why-us">
+                <div class="container">
+                    <h2 class="h2white">Почему с нами?</h2>
+                    <div class="grid cols-2">
+                        <div class="card">
+                            
+                            <strong>Мы заботимся о вас</strong>
+                            <p class="muted">Забота начинается ещё до старта — мы мягко поможем вам разобрать ваш запрос
+                                на это путешествие. И продолжается после —
+                                мы остаёмся на связи, чтобы поддержать и после тура</p>
+                        </div>
+                        <div class="card">
+                            
+                            <strong>Мы помогаем «переварить» опыт</strong>
+                            <p class="muted">Сильные впечатления, как и эмоции, нуждаются в интеграции. Психологи
+                                помогают осмыслить
+                                и встроить опыт так, чтобы он стал опорой, а не просто красивым воспоминанием</p>
+                        </div>
+                        <div class="card">
+                            
+                            <strong>Мы создаем безопасное пространство</strong>
+                            <p class="muted">У нас нет масок и оценок. В группе можно быть разным: задавать вопросы,
+                                делиться или
+                                молчать. Пространство доверия, уязвимости и принятия</p>
+                        </div>
+                        <div class="card">
+                            
+                            <strong>Мы придерживаемся баланса</strong>
+                            <p class="muted">Соединяем экскурсии и приключения с психологическими практиками; личное
+                                время — с
+                                ресурсом группы; активность — с глубоким отдыхом</p>
+                        </div>
+                    </div>
+                    <p class="pwhite small" style="margin-top:150px; font-size: 1.5em; text-align:center">
+                        <i>«Мы существуем, потому что верим: настоящее путешествие должно менять не только ленту в
+                            инстаграме, но и
+                            душу»</i>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Кому подойдёт -->
+            <section id="who" class="sky">
+                <div class="container">
+                    <h2 class="h2white">Это путешествие для тебя, если..</h2>
+                    <div class="grid cols-2">
+                        <div class="card"><strong>Ты устал от бесконечной гонки и ритма города</strong>
+                            <p class="muted">— выдохнуть, замедлиться и восстановить силы</p>
+                        </div>
+                        <div class="card"><strong>Ты хочешь разобраться в себе и своих чувствах</strong>
+                            <p class="muted">— не просто фото с поездки, а внутренние открытия и ясность</p>
+                        </div>
+                        <div class="card"><strong>Ты ищешь пространство, где можно быть настоящим</strong>
+                            <p class="muted">— быть в кругу людей, где безопасно делиться или молчать</p>
+                        </div>
+                        <div class="card"><strong>Ты любишь свободу и путешествия</strong>
+                            <p class="muted">— найти силы на новый этап, расставание, смену работы</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- Программа (полная, с картинками) -->
+    <section id="program" class="program">
+        <div class="container">
+            <h2>✨ 5 дней — 5 смыслов</h2>
+            <p class="lead">Каждый день — мягкий ритм: природа, практики, тёплое общение и личное время.</p>
+
+            <!-- День 1 -->
+            <details class="day" open>
+                <summary>
+                    <span class="day__badge">День 1</span>
+                    <span class="day__title">Приезд · Дневник путешественника · Настрой на путь</span>
+                </summary>
+                <div class="day__body">
+                    <div class="day__text">
+                        <ul style="list-style: none;">
+                            <li>✓ Выезд из Еревана → заселение в уютный домик у реки</li>
+                            <li>✓ Знакомство, первая запись в дневник путешественника, цели тура, вечерние игры в
+                                беседке</li>
+                        </ul>
+                    </div>
+                    <div class="gallery">
+                        <figure>
+                            <img src="backgrounds/dilijan.jpg" alt="Окрестности" loading="lazy">
+                            <!--<figcaption>Окрестности - горный пейзаж</figcaption>-->
+                        </figure>
+                        <figure>
+                            <img src="backgrounds/house.jpg" alt="Гостиная в доме" loading="lazy">
+                            <!--<figcaption>Наш дом</figcaption>-->
+                        </figure>
+                    </div>
+                </div>
+            </details>
+
+            <!-- День 2 -->
+            <details class="day">
+                <summary>
+                    <span class="day__badge">День 2</span>
+                    <span class="day__title">Карта эмоций · Озеро Парц и пикник</span>
+                </summary>
+                <div class="day__body">
+                    <div class="day__text">
+
+                        <ul style="list-style: none;">
+                            <li>✓ Утро с телесными практиками</li>
+                            <li>✓ Терапевтическая группа и «Карта эмоций»</li>
+                            <li>✓ Хайкинг и пикник у озера Парц + мастер-класс от психолога</li>
+                        </ul>
+                    </div>
+                    <div class="gallery">
+                        <figure>
+                            <img src="backgrounds/parz.webp" alt="Озеро Парз" loading="lazy">
+                            <!--<figcaption>Озеро Парз</figcaption>-->
+                        </figure>
+                        <figure>
+                            <img src="backgrounds/parz2.jpg" alt="Вид на озеро осенью" loading="lazy">
+                            <!--<figcaption>Вид на озеро осенью</figcaption>-->
+                        </figure>
+                    </div>
+                </div>
+            </details>
+
+            <!-- День 3 -->
+            <details class="day">
+                <summary>
+                    <span class="day__badge">День 3</span>
+                    <span class="day__title">Практика проживания чувств · Джип-тур на гору Димац</span>
+                </summary>
+                <div class="day__body">
+                    <div class="day__text">
+
+                        <ul style="list-style: none;">
+                            <li>✓ Утренняя зарядка и практика</li>
+                            <li>✓ Групповая работа с чувствами</li>
+                            <li>✓ Джип-тур на гору Димац, закат и волейбол на вершине</li>
+                        </ul>
+                    </div>
+                    <div class="gallery">
+                        <figure>
+                            <img src="backgrounds/dimats.jpeg" alt="Гора Димац" loading="lazy">
+                            <!-- <figcaption>Гора Димац</figcaption>-->
+                        </figure>
+                        <figure>
+                            <img src="backgrounds/oun.jpg" alt="Пейзаж" loading="lazy">
+                            <!-- <figcaption>Местный пейзаж</figcaption>-->
+                        </figure>
+                    </div>
+                </div>
+            </details>
+
+            
+            <!-- День 4 -->
+            <details class="day">
+                <summary>
+                    <span class="day__badge">День 4</span>
+                    <span class="day__title">Тема границ · Монастырь Арагцин и водопад</span>
+                </summary>
+                <div class="day__body">
+                    <div class="day__text">
+
+                        <ul style="list-style: none;">
+                            <li>✓ Самомассаж и завтрак</li>
+                            <li>✓ Практика про границы</li>
+                            <li>✓ Поездка в монастырь Арагцин, хайкинг к скрытому водопаду</li>
+                            <li>✓ Кулинарный мастер-класс (армянская выпечка и чай)</li>
+                        </ul>
+                    </div>
+                    <div class="gallery">
+                        <figure>
+                            <img src="backgrounds/agarcin.png" alt="Монастырь Арагцин" loading="lazy">
+                            <!--<figcaption>Монастырь Арагцин</figcaption>-->
+                        </figure>
+                        <figure>
+                            <img src="backgrounds/vodopad.webp" alt="Водопад" loading="lazy">
+                            <!--<figcaption>Водопад</figcaption>-->
+                        </figure>
+                    </div>
+                </div>
+            </details>
+
+            <!-- День 5 -->
+            <details class="day">
+                <summary>
+                    <span class="day__badge">День 5</span>
+                    <span class="day__title">Разговор о ценностях · Озеро Севан · Баня на закате</span>
+                </summary>
+                <div class="day__body">
+                    <div class="day__text">
+
+                        <ul style="list-style: none;">
+                            <li>✓ Утренняя практика и разговор о ценностях</li>
+                            <li>✓ Поездка на озеро Севан и монастырь Севанаванк</li>
+                            <li>✓ Баня на закате и дегустация армянской рыбы сиг</li>
+                        </ul>
+                    </div>
+                    <div class="gallery">
+                        <figure>
+                            <img src="backgrounds/sevan.jpg" alt="Озеро Севан" loading="lazy">
+                            <!--<figcaption>Озеро Севан</figcaption>-->
+                        </figure>
+                        <figure>
+                            <img src="backgrounds/sevanavank.jpg" alt="Монастырь Севанаванк" loading="lazy">
+                            <!--<figcaption>Монастырь Севанаванк</figcaption>-->
+                        </figure>
+                    </div>
+                </div>
+            </details>
+
+            <!-- День 6 -->
+            <details class="day">
+                <summary>
+                    <span class="day__badge">День 6</span>
+                    <span class="day__title">Финальная зарядка · Прощание · Возвращение в Ереван</span>
+                </summary>
+                <div class="day__body">
+                    <div class="day__text">
+
+                        <ul style="list-style: none;">
+                            <li>✓ Финальная утренняя практика, благодарности и объятия</li>
+                            <li>✓ Возвращение в Ереван</li>
+                        </ul>
+                    </div>
+                    <div class="gallery">
+                        <figure>
+                            <img src="backgrounds/yerevan.webp" alt="Ереван и Арарат" loading="lazy">
+                            <!--<figcaption>Ереван и Арарат</figcaption>-->
+                        </figure>
+                        <figure>
+                            <img src="backgrounds/yerevan2.jpg" alt="Ереван" loading="lazy">
+                            <!--<figcaption>Ереван</figcaption>-->
+                        </figure>
+                    </div>
+                </div>
+            </details>
+
+            <a href="files/program.pdf" download class="cta">
+                Скачать полную программу тура
+            </a>
+
+        </div>
+    </section>
+
+    <section id="gallery" class="photo-marquee" aria-label="Фотографии тура">
+        <div class="marquee-track" id="marqueeTrack">
+            <!-- КОПИЯ 1 -->
+
+
+            <a class="marquee-item" href="images/IMG_7497.jpg">
+                <img src="images/IMG_7497.jpg" alt="Виды" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7505.jpg">
+                <img src="images/IMG_7505.jpg" alt="Виды" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7541.jpg">
+                <img src="images/IMG_7541.jpg" alt="Fire" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7581.jpg">
+                <img src="images/IMG_7581.jpg" alt="Fire" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7631.jpg">
+                <img src="images/IMG_7631.jpg" alt="Fire" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7269.jpg">
+                <img src="images/IMG_7269.jpg" alt="Виды" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_9800.jpg">
+                <img src="images/IMG_9800.jpg" alt="Fire" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_9810.jpg">
+                <img src="images/IMG_9810.jpg" alt="Fire" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7259.jpg">
+                <img src="images/IMG_7259.jpg" alt="Виды" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/sevanavank.jpg">
+                <img src="images/sevanavank.jpg" alt="Fire" loading="lazy">
+            </a>
+
+            <!-- КОПИЯ 2 (дублируем те же элементы для бесшовности) -->
+
+            <a class="marquee-item" href="images/IMG_7269.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_7269.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7497.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_7497.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7505.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_7505.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7541.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_7541.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7581.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_7581.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7259.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_7259.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_7631.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_7631.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_9800.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_9800.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_9810.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_9810.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/IMG_9810.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/IMG_9810.jpg" alt="" loading="lazy">
+            </a>
+            <a class="marquee-item" href="images/sevanavank.jpg" aria-hidden="true" tabindex="-1">
+                <img src="images/sevanavank.jpg" alt="" loading="lazy">
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== Лайтбокс (один на страницу) ===== -->
+    <dialog class="lightbox" id="lightbox" aria-label="Просмотр фото">
+        <div class="lightbox__wrap">
+            <img class="lightbox__img" id="lightboxImg" alt="">
+            <button class="lightbox__close" id="lightboxClose" aria-label="Закрыть">✕</button>
+        </div>
+    </dialog>
+
+    <!-- 🌿 С чем вы вернётесь -->
+    <section id="return">
+        <div class="container">
+            <p class="lead" style="margin-top:70px; font-size: 1.5em" align="center">
+                <i>«Вы вернётесь домой обновлёнными: с ясной головой, лёгким сердцем и ощущением,
+                    что жизнь движется дальше»</i>
+            </p>
+        </div>
+    </section>
+
+    <!-- Стоимость -->
+    <section id="price" class="sky">
+        <div class="container">
+            <h2>Стоимость и что включено</h2>
+            <div class="grid cols-2">
+                <div class="card">
+                    <div class="price">от 50 000 ₽</div>
+                    <p class="muted">за 6 дней · всё включено, кроме перелёта</p>
+                </div>
+                <div class="card">
+                    <ul>
+                        <li>Проживание 5 ночей</li>
+                        <li>Питание (3 раза в день и перекус)</li>
+                        <li>Все практики и мастер‑классы</li>
+                        <li>Трансферы внутри программы</li>
+                        <li>Баня и расходные материалы</li>
+                        <li>Медицинская страховка путешественника</li>
+                        <li>Помощь в подборе авиабилетов</li>
+                        <li>Консультация по сбору в путешествие</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="price">Дополнительные расходы</div>
+                    <p class="muted">не включено</p>
+                </div>
+                <div class="card">
+                    <ul>
+                        <li>Перелет до Еревана и обратно</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ответы на вопросы -->
+    <section id="faq" class="sky">
+        <div class="container">
+            <h2>Ответы на вопросы</h2>
+
+            <!-- Проживание -->
+
+            <details class="faq">
+                <summary>
+                    <span class="faq__title"><b>Где мы будем жить?</b></span>
+                </summary>
+                <div class="faq__body">
+                    <div style="margin: 0; padding: 0;">
+                            <p style="text-align:justify; margin:calc(2% + 15px)">Мы будем жить в большом коттедже на 10 человек. Одноместные кровати по 2 человека в комнате в одном доме с четырьмя
+                            ванными комнатами. У нас будет большая гостиная и большой сад с мангалом и беседкой. Из окон открывается осенний вид на
+                            горы и реку</p>
+                                              
+                    </div>
+                </div>
+                <div class="gallery-faq">
+                        <figure style="margin: 0; padding: 0;">
+                            <img  class="pic-faq" src="house/photo.jpg" alt="Общая комната" loading="lazy">
+                        </figure>
+                        <figure style="margin: 0; padding: 0;">
+                            <img class="pic-faq" src="house/photo1.jpg" alt="Общая комната" loading="lazy">
+                        </figure>
+                        <figure style="margin: 0; padding: 0;">
+                            <img class="pic-faq" src="house/photo2.jpg" alt="Комната для проживания 2 человек" loading="lazy">
+                        </figure>
+                    </div>
+            </details>
+
+            <!-- Питание -->
+            <details class="faq">
+                <summary>
+                    <span class="faq__title"><b>Что мы будем есть?</b></span>
+                </summary>
+                <div class="faq__body">
+                    <div>
+                        <p style="text-align:justify; margin:calc(2% + 15px)">На протяжении всего тура мы будем пробовать местную кухню. Завтраки, обеды и ужины включены в стоимость, готовить мы
+                            будем совместно в коттедже</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Дневник путешественника -->
+            <details class="faq">
+                <summary>
+                    <span class="faq__title"><b>Что такое Дневник путешественника?</b></span>
+                </summary>
+                <div class="faq__body">
+                    <div>
+                        <p style="text-align:justify; margin:calc(2% + 15px)">Дневник путешественника — это не блокнот с сухими фактами, а живая хроника вашего пути. Он создан для того, чтобы
+                            сохранить самое ценное: ВАШИ ощущения, ВАШ опыт и те уникальные моменты, которые происходили именно с ВАМИ во время
+                            тура.
+                            Записи могут быть о чём угодно:
+                            «Сегодня я впервые молчал целый час, и оказалось, что тишина не пугает, а успокаивает».
+                            «На вершине горы я почувствовал, что могу больше, чем думал. Я чувствовал силу ветра, но крепко стоял на ногах»
+                            «Сегодня я слушал тишину и впервые НЕ СПЕШИЛ»
+                            Каждая запись — как маленький кристалл памяти: он хранит чувства, которые не сфотографируешь. И, открывая дневник снова,
+                            вы возвращаетесь не в место, а в сам момент, где были живыми и настоящими</p>
+                    </div>
+                </div>
+            </details>
+
+            <!-- Карта чувств -->
+            <details class="faq">
+                <summary>
+                    <span class="faq__title"><b>Что такое Карта эмоций?</b></span>
+                </summary>
+                <div class="faq__body">
+                    <div style="margin: 0; padding: 0;">
+                        <p style="text-align:justify; margin:calc(2% + 15px)">Карта эмоций — это не просто рисунок, а ваш личный путеводитель по внутреннему путешествию. Нежная карта вашей души,
+                            запечатлённая в маршруте путешествия. На ней вы отметите главные впечатления, эмоции и открытия, которые подарил тур.
+                            Линии маршрутов превращаются в воспоминания, а точки остановок — в радость, грусть и вдохновение, прожитые в пути. Она
+                            останется с вами как напоминание: всё, что вы почувствовали, — ценно и ваше навсегда</p>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Организаторы -->
+    <section id="team" class="sky">
+        <div class="container">
+            <h2>Наша команда</h2>
+
+            <div class="grid cols-3 team-grid">
+                <!-- 1 -->
+                <article class="team-card card">
+                    <figure class="avatar">
+                        <img src="team/IMG_5889.JPG" alt="Анастасия Егорова — психолог, ведущая тура" loading="lazy">
+                    </figure>
+                    <h3 class="team-name">Анастасия Егорова</h3>
+                    <div class="role muted">Психолог, ведущая тура</div>
+                    <p class="bio">
+                        Много путешествую по России и миру, побывала в 30 странах. Год назад переехала в Армению и
+                        восхищаюсь её красотами и
+                        ценностями<br><br> Тур для меня - глоток свободы и спокойствия в мире суеты и рутины.
+                        Веду мягкие телесные практики, психологические встречи, отвечаю за атмосферу и безопасность
+                    </p>
+                    <nav class="socials small">
+                        <a href="https://t.me/spolpinka" target="_blank" rel="noopener">Telegram</a>
+
+                    </nav>
+                </article>
+
+                <!-- 2 -->
+                <article class="team-card card">
+                    <figure class="avatar">
+                        <img src="team/IMG_8952 (2).jpg" alt="Алина Викторова — координатор логистики" loading="lazy">
+                    </figure>
+                    <h3 class="team-name">Алина Викторова</h3>
+                    <div class="role muted">Организатор, координатор</div>
+                    <p class="bio">
+                        По образованию — химик, по профессии — специалист по закупкам, по призванию — айтишник,
+                        исследователь и путешественник
+                        <br><br>Отвечаю за маршрут и организацию тура. Делаю так, чтобы поездка была
+                        комфортной: от расписания до пледа у костра и маленьких приятностей во время тура
+                    </p>
+                    <nav class="socials small">
+                        <a href="https://www.instagram.com/alinesergeevna/" target="_blank" rel="noopener">Instagram</a>
+                    </nav>
+                </article>
+
+                <!-- 3 -->
+                <article class="team-card card">
+                    <figure class="avatar">
+                        <img src="team/photo_2025.jpg" alt="Елизавета Медведева — фасилитатор практик" loading="lazy">
+                    </figure>
+                    <h3 class="team-name">Елизавета Медведева</h3>
+                    <div class="role muted">Психолог</div>
+                    <p class="bio">
+                        Я психолог, друг, путешественник, искатель приключений, но главное - ЧЕЛОВЕК.
+                        Люди часто говорят мне, что со мной - ХОЧЕТСЯ БЫТЬ СОБОЙ
+                        <br><br>
+                        А я считаю, что искать настоящего себя лучше всего в путешествиях и в контакте с людьми. Именно
+                        так однажды сделала я и
+                        не прогадала!
+                    </p>
+                    <nav class="socials small">
+                        <a href="https://t.me/llalizaa" target="_blank" rel="noopener">Telegram</a>
+                    </nav>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Анкета -->
+    <section id="apply">
+        <div class="container">
+            <h2>Хочу в тур</h2>
+            <p class="pwhite">Заполни короткую форму — мы свяжемся и ответим на вопросы.</p>
+
+            <form id="apply-form" class="card">
+                <!-- один скрытый token (убрали дубликат) -->
+                <input type="hidden" name="token" value="armenia2025secret">
+
+                <div class="grid cols-2">
+                    <label class="field" id="f-name">
+                        Имя *<br />
+                        <input type="text" name="name" required autocomplete="name"
+                            style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--sand); background-color: #f0eae4;">
+                        <span class="error-text"></span>
+                    </label>
+                    <label class="field" id="f-phone">
+                        Телефон *<br />
+                        <div class="phone-row" style="margin-top:6px;">
+                            <select name="countryCode" aria-label="Код страны" style="background-color: #f0eae4;">
+                                <option value="+7">🇷🇺 +7 (Россия)</option>
+                                <option value="+374">🇦🇲 +374 (Армения)</option>
+                                <option value="+380">🇺🇦 +380 (Украина)</option>
+                                <option value="+995">🇬🇪 +995 (Грузия)</option>
+                                <option value="+1">🇺🇸 +1 (США/Канада)</option>
+                                <option value="+44">🇬🇧 +44 (Великобритания)</option>
+                                <option value="+49">🇩🇪 +49 (Германия)</option>
+                            </select>
+                            <input type="text" name="localPhone" required placeholder="9123456789" inputmode="tel"
+                                autocomplete="tel"
+                                style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--sand); background-color: #f0eae4;">
+                        </div>
+                        <span class="error-text"></span>
+                    </label>
+                    <label class="field" id="f-tg">
+                        Telegram<br />
+                        <input type="text" name="telegram" placeholder="@username или +79123456789" autocomplete="off"
+                            style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--sand); background-color: #f0eae4;">
+                        <span class="error-text"></span>
+                    </label>
+
+                </div>
+
+                <!-- honeypot от ботов (НЕ заполнять) -->
+                <div style="position:absolute; left:-5000px; top:auto; width:1px; height:1px; overflow:hidden;">
+                    <label>Ваш сайт <input type="text" name="website"></label>
+                </div>
+
+                <label style="display:block; margin-top:12px;">
+                    Сообщение (по желанию)<br />
+                    <textarea name="msg" rows="4"
+                        style="width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--sand); background-color: #f0eae4;"></textarea>
+                </label>
+
+                <div style="display:flex; gap:12px; align-items:center; margin-top:16px;">
+                    <button class="cta" type="submit">Отправить</button>
+                    <div><span class="muted small">*Поля, обязательные для заполнения</span><br>
+                        <span class="muted small">Вы также можете написать нам:
+                            <strong>@molchaniegovorit</strong></span>
+                    </div>
+                </div>
+                <div id="apply-status" class="muted small" style="margin-top:10px;"></div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container row">
+            <div class="pwhite">© 2025 Терапия путешествием · Все права защищены</div>
+            <div class="pwhite">Связаться с нами: @molchaniegovorit</div>
+        </div>
+    </footer>
+
+  
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzH1BRqYa88y-2zl1dPUApDJECxxBqQiw_7EyStNuEs3tcCYHUlKaATIE2bBGUeJr-t/exec';
+
+        function setFieldError(fieldEl, msg) {
+            fieldEl.classList.toggle('invalid', !!msg);
+            const span = fieldEl.querySelector('.error-text');
+            if (span) span.textContent = msg || '';
+            const input = fieldEl.querySelector('input,select,textarea');
+            if (msg && input) input.setAttribute('aria-invalid', 'true'); else if (input) input.removeAttribute('aria-invalid');
+        }
+        function clearAllErrors(form) {
+            form.querySelectorAll('.field').forEach(f => setFieldError(f, ''));
+        }
+
+        // E.164: + и 10–15 цифр
+        function validateAndBuildPhone(countryCode, local) {
+            const cc = String(countryCode || '').trim();
+            let loc = String(local || '').trim().replace(/[^\d]/g, '');
+            if (!loc) return { ok: false, value: '', error: 'Укажите номер' };
+            const full = cc + loc;
+            const ok = /^\+\d{10,15}$/.test(full);
+            return ok ? { ok: true, value: full } : { ok: false, value: full, error: 'Номер должен быть в формате +XXXXXXXXXX (10–15 цифр)' };
+        }
+
+        function validateTelegramOrPhone(raw) {
+            const v = (raw || '').trim();
+            if (!v) return { ok: true, value: '' };
+
+            // 1) Пробуем распознать телефон (E.164): оставляем только цифры, добавляем '+' и проверяем длину
+            let digits = v.replace(/\D/g, '');           // удаляем всё, кроме цифр
+            if (digits.length >= 10 && digits.length <= 15) {
+                const e164 = '+' + digits;
+                if (/^\+\d{10,15}$/.test(e164)) {
+                    return { ok: true, value: e164, type: 'phone' };
+                }
+            }
+
+            // 2) Пробуем распознать @username (Telegram): 5–32, латиница/цифры/_, начинается с буквы
+            const reUser = /^@?[A-Za-z][A-Za-z0-9_]{4,31}$/;
+            if (reUser.test(v)) {
+                const normalized = v.startsWith('@') ? v : '@' + v;
+                return { ok: true, value: normalized, type: 'username' };
+            }
+
+            // 3) Ошибка
+            return {
+                ok: false,
+                value: v,
+                error: 'Введите @username или номер в формате +XXXXXXXXXX (10–15 цифр)'
+            };
+        }
+
+        document.getElementById('apply-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const status = document.getElementById('apply-status');
+            status.style.color = '';
+            status.textContent = '';
+            clearAllErrors(form);
+
+            const fName = document.getElementById('f-name');
+            const fPhone = document.getElementById('f-phone');
+            const fTg = document.getElementById('f-tg');
+
+            const nameVal = (form.name.value || '').trim();
+            if (!nameVal) { setFieldError(fName, 'Укажите имя'); fName.querySelector('input').focus(); return; }
+
+            const phoneRes = validateAndBuildPhone(form.countryCode.value, form.localPhone.value);
+            if (!phoneRes.ok) { setFieldError(fPhone, phoneRes.error); fPhone.querySelector('input,select').focus(); return; }
+
+            const tgRes = validateTelegramOrPhone(form.telegram.value);
+            if (!tgRes.ok) { setFieldError(fTg, tgRes.error); fTg.querySelector('input').focus(); return; }
+
+            const messageVal = (form.msg.value || '').trim();
+            const telegramVal = tgRes.value;
+
+            const body = new URLSearchParams();
+            body.append('name', nameVal);
+            body.append('contact', phoneRes.value);          // телефон (итоговый E.164)
+
+            // Телеграм: шлём и современное, и «наследное» имя, чтобы сервер точно принял
+            body.append('telegram', telegramVal);
+            body.append('contact2', telegramVal);            // ← legacy alias
+
+            // Сообщение: тоже два имени на всякий
+            body.append('msg', messageVal);
+            body.append('message', messageVal);              // ← legacy alias
+
+            body.append('token', (form.token.value || ''));
+            body.append('website', form.elements.website?.value || ''); // honeypot
+
+            // Отладка: покажем, что уходит
+            try {
+                const debugPayload = {};
+                for (const [k, v] of body.entries()) debugPayload[k] = v;
+                console.log('Payload to GAS:', debugPayload);
+            } catch { }
+
+            status.textContent = 'Отправляем...';
+
+            try {
+                const res = await fetch(SCRIPT_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+                    body
+                });
+
+                const raw = await res.text();           // ← читаем сырой текст ВСЕГДА
+                console.log('GAS raw response:', raw);  // ← смотрим, что реально пришло
+
+                let data;
+                try {
+                    data = JSON.parse(raw);               // ← пытаемся распарсить JSON
+                } catch (e) {
+                    data = { ok: false, parseError: e.message, raw }; // ← если не JSON, покажем raw
+                }
+
+                if (res.ok && data.ok) {
+                    status.textContent = data.tokenOk ? 'Спасибо! Заявка отправлена.' : 'Заявка принята.';
+                    form.reset();
+                } else {
+                    status.style.color = 'crimson';
+                    status.textContent = 'Не получилось отправить. Попробуйте ещё раз.';
+                    console.error('Fetch not ok or data.ok=false', { http: res.status, data });
+                }
+            } catch (err) {
+                status.style.color = 'crimson';
+                status.textContent = 'Ошибка сети. Повторите позже.';
+                console.error('Network error:', err);
+            }
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main section');
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target); // показываем один раз
+                    }
+                });
+            }, {
+                threshold: 0.3 // секция появляется, когда 30% в зоне видимости
+            });
+
+            sections.forEach(sec => observer.observe(sec));
+        });
+    </script>
+
+    <script>
+        (function () {
+            const nav = document.querySelector('.nav');
+            const toggle = document.querySelector('.nav__toggle');
+            const links = document.getElementById('nav-links');
+            if (!nav || !toggle || !links) return;
+
+            // 1) Выставляем корректную высоту шапки в CSS-переменную (debounce через rAF)
+            const setNavH = () => {
+                const h = nav.offsetHeight || 64;
+                document.documentElement.style.setProperty('--nav-h', h + 'px');
+            };
+            let rAF;
+            const onResize = () => {
+                if (rAF) cancelAnimationFrame(rAF);
+                rAF = requestAnimationFrame(setNavH);
+            };
+            setNavH();
+            window.addEventListener('resize', onResize, { passive: true });
+
+            // 2) Открыть/закрыть меню (плюс блокировка скролла body)
+            const openMenu = () => {
+                if (nav.classList.contains('nav--open')) return;
+
+                // фиксируем scroll без "прыжка"
+                const y = window.scrollY || document.documentElement.scrollTop;
+                document.documentElement.style.setProperty('--lock-y', y + 'px');
+                document.body.style.position = 'fixed';
+                document.body.style.top = `-${y}px`;
+                document.body.style.width = '100%';
+
+                // даём браузеру один кадр подготовиться и только затем включаем анимацию
+                requestAnimationFrame(() => {
+                    nav.classList.add('nav--open');
+                    document.body.classList.add('menu-open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                });
+            };
+
+            const closeMenu = () => {
+                if (!nav.classList.contains('nav--open')) return;
+
+                nav.classList.remove('nav--open');
+                document.body.classList.remove('menu-open');
+                toggle.setAttribute('aria-expanded', 'false');
+
+                // возвращаем прокрутку туда же
+                const y = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--lock-y')) || 0;
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.width = '';
+                window.scrollTo(0, y);
+            };
+            const toggleMenu = () => nav.classList.contains('nav--open') ? closeMenu() : openMenu();
+
+            // 3) Моментальный отклик на таче + клик (без задержки)
+            toggle.addEventListener('touchstart', (e) => { e.preventDefault(); toggleMenu(); }, { passive: false });
+            toggle.addEventListener('click', toggleMenu);
+
+            // 4) Закрытие по клику на ссылку
+            links.addEventListener('click', (e) => {
+                if (e.target.closest('a')) closeMenu();
+            }, { passive: true });
+
+            // 5) Закрытие по Escape
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+            // 6) Клик вне меню на мобильном — закрыть
+            document.addEventListener('click', (e) => {
+                if (window.matchMedia('(max-width:1100px)').matches && nav.classList.contains('nav--open')) {
+                    if (!nav.contains(e.target)) closeMenu();
+                }
+            }, { passive: true });
+
+            // 7) При уходе на десктоп — гарантированно закрываем
+            window.matchMedia('(min-width:1101px)').addEventListener('change', m => { if (m.matches) closeMenu(); });
+        })();
+    </script>
+
+    <!-- ===== JS: поведение кликов/пауз ===== -->
+    <script>
+        (function () {
+            const track = document.getElementById('marqueeTrack');
+            const dlg = document.getElementById('lightbox');
+            const dlgImg = document.getElementById('lightboxImg');
+            const dlgClose = document.getElementById('lightboxClose');
+
+            // Открытие изображения в лайтбоксе
+            track.addEventListener('click', (e) => {
+                const a = e.target.closest('a.marquee-item');
+                if (!a) return;
+                e.preventDefault();
+                const href = a.getAttribute('href');
+                const alt = a.querySelector('img')?.getAttribute('alt') || '';
+                dlgImg.src = href;
+                dlgImg.alt = alt;
+                if (typeof dlg.showModal === 'function') {
+                    dlg.showModal();
+                } else {
+                    // Fallback для старых браузеров
+                    dlg.setAttribute('open', '');
+                }
+            });
+
+            // Закрытие лайтбокса
+            const closeDlg = () => {
+                if (dlg.open) dlg.close();
+                dlgImg.src = '';
+            };
+            dlgClose.addEventListener('click', closeDlg);
+            dlg.addEventListener('click', (e) => {
+                // клик по подложке (за пределами картинки) — закрыть
+                const rect = dlg.querySelector('.lightbox__wrap').getBoundingClientRect();
+                if (e.clientX < rect.left || e.clientX > rect.right ||
+                    e.clientY < rect.top || e.clientY > rect.bottom) {
+                    closeDlg();
+                }
+            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDlg(); });
+
+            // На мобильных «паузим» анимацию при касании
+            let touching = false;
+            track.addEventListener('touchstart', () => {
+                touching = true;
+                track.style.animationPlayState = 'paused';
+            }, { passive: true });
+            track.addEventListener('touchend', () => {
+                touching = false;
+                track.style.animationPlayState = '';
+            });
+            track.addEventListener('touchcancel', () => {
+                touching = false;
+                track.style.animationPlayState = '';
+            });
+        })();
+    </script>
+
+    <script>window.addEventListener('load', () => document.querySelector('.steps-wrap')?.classList.add('ready'));</script>
+
+    <script>
+(function () {
+  const heroCta = document.querySelector('header.hero .cta[href^="#"]');
+  if (!heroCta) return;
+
+  heroCta.addEventListener('click', (e) => {
+    const hash = heroCta.getAttribute('href');
+    if (!hash || hash === '#') return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+
+    e.preventDefault();
+
+    // если вдруг открыто мобильное меню — закрываем и снимаем фиксацию body
+    const nav = document.querySelector('.nav');
+    if (nav && nav.classList.contains('nav--open')) {
+      nav.classList.remove('nav--open');
+      document.body.classList.remove('menu-open');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    }
+
+    const navH = parseInt(getComputedStyle(document.documentElement)
+                   .getPropertyValue('--nav-h')) || 80;
+    const y = target.getBoundingClientRect().top + window.scrollY - navH;
+
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  });
+})();
+</script>
+
+</body>
+
+</html>
